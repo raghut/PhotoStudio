@@ -1,0 +1,103 @@
+# Photo Studio — passport photos for the shop
+
+Native Android app (Kotlin + Jetpack Compose + CameraX). English and Telugu.
+
+## What it does
+
+```
+Home ─┬─ Take Photo ─► Choose size ─┬─ Passport (3.5 × 4.5 cm) ─► Camera: passport frame + face oval
+      │                             └─ 4×6 inch photo         ─► Camera: 4×6 frame
+      │                                        │                  (flash: Off / Auto / On)
+      │                                        ▼
+      │                    Adjust: white background · brightness · contrast · colour · warmth
+      │                                        │
+      │                                        ▼ name the photo (optional) ─► saved
+      │                    Print preview: 8 passport photos on one 4×6 sheet
+      │                                   ─► Print  ·  Save to phone (Photo 4×6 / PDF)  ·  Share  ·  Edit
+      ├─ Previous Photos ─► tap any photo ─► reprint / share / delete
+      │                  └─ Edit ─────────► back to Adjust, sliders where you left them
+      └─ Settings ─► Language (English / తెలుగు), white background default, back/front camera, cutting lines
+```
+
+- **Passport sheet**: 8 photos (4 × 2) on 4×6 paper with a 3.5 mm safe border and thin grey cutting lines.
+- **Exact size printing**: the app never uses "fit to page". The sheet is drawn at true physical size,
+  so each photo comes out 35 × 45 mm. If A4 is selected by mistake, it still prints true size in the middle.
+- **White background**: on-device person detection (Google ML Kit, works offline). Brightness/contrast
+  only change the person; the background stays pure white.
+- **Flash**: a button at the top of the camera cycles Off → Auto → On. It only appears when the
+  chosen camera actually has a flash, so it stays hidden on front cameras that don't.
+- **Names**: after adjusting, the app asks for a name (skippable — just leave it empty). The name
+  shows on the Previous Photos card and leads the saved file name, e.g. `Ravi_passport_04-11-2026_1830.jpg`.
+- **Edit again**: any photo can be reopened from Previous Photos (the **Edit** button on its card) or
+  from the print preview. The sliders come back exactly where they were left, and editing works from
+  the *untouched* capture — so changes never pile up on top of each other, however often it's edited.
+  Editing replaces the photo in place; it does not create a second entry.
+- **Share**: sends the single photo (JPEG, 600 dpi) to WhatsApp/Gmail, useful for online application forms.
+- **Save to phone**: keeps the whole sheet as a file, so it can be printed later or sent on WhatsApp.
+  Two formats, both exactly 4 × 6 inch:
+  - **Photo (4×6)** — JPEG, 1200 × 1800 px (300 dpi), lands in *Gallery → Photo Studio*.
+    Print it from the Gallery, or hand it to any photo lab as a normal 4×6 print.
+  - **PDF** — one page the true physical size of the sheet, lands in *Downloads → Photo Studio*.
+    Use this when the photo must come out at an exact size (the page carries the measurements, so
+    no print dialog can shrink it).
+
+  A message appears after saving with a **Share** button, in case it should go out straight away.
+- All photos stay on the phone — in the app's private storage, plus Gallery/Downloads for the
+  sheets you choose to save. Nothing is uploaded anywhere.
+
+## Build and install (one time, on your Mac)
+
+1. Install **Android Studio** (any 2024+ version).
+2. *File → Open* → select this `PhotoStudio` folder. Let Gradle sync (first sync downloads ~1 GB).
+   If Android Studio offers to upgrade the Android Gradle Plugin, it's safe to accept.
+3. On your parents' phone: *Settings → About phone → tap "Build number" 7 times* → *Developer options → USB debugging ON*.
+4. Connect the phone by USB, pick it in the device dropdown, press **Run ▶**.
+
+To install without a cable: *Build → Build App Bundle(s) / APK(s) → Build APK(s)*, then send
+`app/build/outputs/apk/debug/app-debug.apk` on WhatsApp and open it on the phone (allow "Install unknown apps").
+
+Requirements: Android 7.0 or newer.
+
+## Printer setup (Canon PIXMA G3770)
+
+1. Connect the printer to the shop Wi-Fi (2.4 GHz only — the G3770 doesn't support 5 GHz).
+2. On the phone install **Canon Print Service** from Play Store (or use the built-in Mopria/Default Print Service).
+3. In the app press **Print** → choose the Canon printer → **Paper size 4×6 (10×15 cm)** → **Paper type: Photo paper (glossy)**
+   → print quality High. Load 4×6 photo paper in the rear tray.
+4. Print one test sheet and measure a photo with a ruler: it should be **3.5 cm wide × 4.5 cm tall**.
+   If it's slightly smaller, look for a "Fit to page / Scale" option in the print dialog and turn it off.
+
+Tip: for the 4×6 single photo, choose **Borderless** in the print options so the photo fills the paper edge to edge.
+
+## Code map
+
+| File | What it does |
+|---|---|
+| `model/PhotoSize.kt` | Photo sizes. Add e.g. `STAMP(20f, 25f, false)` and everything adapts. |
+| `model/SheetLayout.kt` | Fits as many photos as possible on 4×6, with margins and cut gaps |
+| `ui/screens/CameraScreen.kt` | Camera, flash, frame overlay, capture and crop to frame |
+| `image/BackgroundTools.kt` | White background via ML Kit selfie segmentation |
+| `image/ImageTools.kt` | Crop, colour adjust, sheet rendering at 300 dpi |
+| `print/SheetPrinter.kt` | Android print framework, true-size PDF |
+| `data/SheetExporter.kt` | "Save to phone": sheet as 4×6 JPEG (Gallery) or PDF (Downloads) |
+| `data/PhotoStore.kt` | Saves photos (finished + original + name/sliders), history list, share |
+| `res/values-te/strings.xml` | Telugu text — edit here if any wording sounds odd |
+
+## How a photo is stored
+
+```
+files/jobs/<timestamp>/
+  photo.jpg     the finished photo — what gets printed and shared
+  original.jpg  the untouched capture — what Edit re-opens
+  meta.txt      size, name, slider values, white-background on/off
+```
+
+Photos taken with the very first version have no `original.jpg`, so Edit falls back to `photo.jpg`
+for those — their earlier adjustments stay baked in. Everything taken since edits cleanly.
+
+## Ideas for v2
+
+- Pick a photo from Gallery/WhatsApp and crop it (customers bring photos on their phone).
+- More sizes: stamp (2 × 2.5 cm), US visa (2 × 2 in), 5×7.
+- Choose how many copies on the sheet; mix two people on one sheet.
+- Daily count of photos printed (simple earnings log).

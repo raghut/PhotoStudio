@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ఫోటో స్టూడియో</string>
+
+    <string name="back">వెనుకకు</string>
+    <string name="cancel">రద్దు</string>
+
+    <string name="home_subtitle">ఒక్క నిమిషంలో పాస్‌పోర్ట్ ఫోటోలు</string>
+    <string name="home_take_photo">ఫోటో తీయండి</string>
+    <string name="home_take_photo_desc">పాస్‌పోర్ట్ సైజు లేదా 4×6 ఫోటో</string>
+    <string name="home_previous">పాత ఫోటోలు</string>
+    <string name="home_settings">సెట్టింగ్‌లు</string>
+
+    <string name="size_title">ఫోటో సైజు ఎంచుకోండి</string>
+    <string name="size_passport">పాస్‌పోర్ట్ సైజు</string>
+    <string name="size_passport_desc">3.5 × 4.5 సెం.మీ · ఒక 4×6 పేపర్‌పై %1$d ఫోటోలు</string>
+    <string name="size_4x6">4×6 అంగుళాల ఫోటో</string>
+    <string name="size_4x6_desc">4×6 పేపర్‌పై ఒక పూర్తి ఫోటో</string>
+
+    <string name="camera_hint_passport">ముఖాన్ని ఓవల్ లోపల ఉంచండి. వెనుక సాదా గోడ ఉండాలి.</string>
+    <string name="camera_hint_full">వ్యక్తిని ఫ్రేమ్ లోపల ఉంచండి</string>
+    <string name="camera_switch">కెమెరా మార్చండి</string>
+    <string name="camera_capture">ఫోటో తీయండి</string>
+    <string name="camera_flash_off">ఫ్లాష్: ఆఫ్</string>
+    <string name="camera_flash_auto">ఫ్లాష్: ఆటో</string>
+    <string name="camera_flash_on">ఫ్లాష్: ఆన్</string>
+    <string name="camera_permission">ఫోటోలు తీయడానికి కెమెరా అనుమతి అవసరం</string>
+    <string name="camera_allow">కెమెరాకు అనుమతి ఇవ్వండి</string>
+    <string name="camera_error">ఫోటో తీయలేకపోయాం. మళ్ళీ ప్రయత్నించండి.</string>
+
+    <string name="adjust_title">ఫోటో సరిచేయండి</string>
+    <string name="adjust_brightness">వెలుతురు</string>
+    <string name="adjust_contrast">కాంట్రాస్ట్</string>
+    <string name="adjust_saturation">రంగు</string>
+    <string name="adjust_warmth">వెచ్చదనం</string>
+    <string name="adjust_white_bg">తెల్లని బ్యాక్‌గ్రౌండ్</string>
+    <string name="adjust_working">బ్యాక్‌గ్రౌండ్ తెల్లగా చేస్తున్నాం…</string>
+    <string name="adjust_bg_failed">బ్యాక్‌గ్రౌండ్ మార్చలేకపోయాం</string>
+    <string name="adjust_reset">రీసెట్</string>
+    <string name="adjust_retake">మళ్ళీ తీయండి</string>
+    <string name="adjust_next">తరువాత</string>
+    <string name="edit_title">ఫోటో మార్చండి</string>
+    <string name="edit_photo">మార్చు</string>
+    <string name="name_title">ఈ ఫోటోకి పేరు పెట్టండి</string>
+    <string name="name_explain">పేరు పెడితే తర్వాత సులభంగా వెతకవచ్చు. ఖాళీగా వదిలేసినా సరే.</string>
+    <string name="name_hint">పేరు (అవసరం లేదు)</string>
+    <string name="name_save">సేవ్ చేయి</string>
+
+    <string name="sheet_title">ప్రింట్ ప్రివ్యూ</string>
+    <string name="sheet_info_passport">%1$d ఫోటోలు · ఒక్కొక్కటి 3.5 × 4.5 సెం.మీ</string>
+    <string name="sheet_info_full">1 ఫోటో · 4 × 6 అంగుళాలు</string>
+    <string name="sheet_print">ప్రింట్ చేయండి</string>
+    <string name="sheet_save">ఫోన్‌లో సేవ్ చేయండి</string>
+    <string name="save_title">ఎలా సేవ్ చేయాలి?</string>
+    <string name="save_photo">ఫోటో (4×6)</string>
+    <string name="save_photo_desc">గ్యాలరీలో JPEG · ఎక్కడైనా ప్రింట్ చేయవచ్చు</string>
+    <string name="save_pdf">PDF</string>
+    <string name="save_pdf_desc">డౌన్‌లోడ్స్‌లో · ప్రింట్‌కు సరైన సైజు</string>
+    <string name="save_working">సేవ్ చేస్తున్నాం…</string>
+    <string name="saved_photo">గ్యాలరీ → Photo Studio లో ఫోటో సేవ్ అయింది</string>
+    <string name="saved_pdf">డౌన్‌లోడ్స్ → Photo Studio లో PDF సేవ్ అయింది</string>
+    <string name="saved_private">సేవ్ అయింది. పంపడానికి షేర్ వాడండి.</string>
+    <string name="save_failed">ఫైల్ సేవ్ చేయలేకపోయాం</string>
+    <string name="save_permission">సేవ్ చేయడానికి స్టోరేజ్ అనుమతి ఇవ్వండి</string>
+    <string name="sheet_share">షేర్ చేయండి</string>
+    <string name="sheet_delete">తొలగించండి</string>
+    <string name="sheet_done">పూర్తయింది</string>
+    <string name="sheet_tip">ప్రింట్ స్క్రీన్‌లో Canon ప్రింటర్, పేపర్ సైజు 4×6 (10×15 సెం.మీ), ఫోటో పేపర్ ఎంచుకోండి.</string>
+    <string name="sheet_not_found">ఫోటో దొరకలేదు</string>
+    <string name="delete_title">ఈ ఫోటోను తొలగించాలా?</string>
+    <string name="delete_yes">అవును, తొలగించు</string>
+    <string name="print_job_name">ఫోటో %1$s</string>
+
+    <string name="history_title">పాత ఫోటోలు</string>
+    <string name="history_empty">ఇంకా ఫోటోలు లేవు</string>
+    <string name="label_passport">పాస్‌పోర్ట్</string>
+    <string name="label_4x6">4×6</string>
+
+    <string name="settings_title">సెట్టింగ్‌లు</string>
+    <string name="settings_language">భాష</string>
+    <string name="settings_photo">ఫోటో</string>
+    <string name="settings_white_bg">తెల్లని బ్యాక్‌గ్రౌండ్ ఆటోమేటిక్‌గా ఆన్</string>
+    <string name="settings_back_camera">వెనుక కెమెరాతో ప్రారంభించు</string>
+    <string name="settings_cut_lines">కత్తిరించే గీతలు ప్రింట్ చేయి</string>
+</resources>

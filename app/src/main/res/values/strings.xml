@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Photo Studio</string>
+
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Home -->
+    <string name="home_subtitle">Passport photos in one minute</string>
+    <string name="home_take_photo">Take Photo</string>
+    <string name="home_take_photo_desc">Passport size or 4×6 photo</string>
+    <string name="home_previous">Previous Photos</string>
+    <string name="home_settings">Settings</string>
+
+    <!-- Choose size -->
+    <string name="size_title">Choose photo size</string>
+    <string name="size_passport">Passport size</string>
+    <string name="size_passport_desc">3.5 × 4.5 cm · %1$d photos on one 4×6 sheet</string>
+    <string name="size_4x6">4×6 inch photo</string>
+    <string name="size_4x6_desc">One full photo on 4×6 paper</string>
+
+    <!-- Camera -->
+    <string name="camera_hint_passport">Keep the face inside the oval. Plain wall behind.</string>
+    <string name="camera_hint_full">Fit the person inside the frame</string>
+    <string name="camera_switch">Switch camera</string>
+    <string name="camera_capture">Take photo</string>
+    <string name="camera_flash_off">Flash: Off</string>
+    <string name="camera_flash_auto">Flash: Auto</string>
+    <string name="camera_flash_on">Flash: On</string>
+    <string name="camera_permission">Camera permission is needed to take photos</string>
+    <string name="camera_allow">Allow camera</string>
+    <string name="camera_error">Could not take photo. Try again.</string>
+
+    <!-- Adjust -->
+    <string name="adjust_title">Adjust photo</string>
+    <string name="adjust_brightness">Brightness</string>
+    <string name="adjust_contrast">Contrast</string>
+    <string name="adjust_saturation">Colour</string>
+    <string name="adjust_warmth">Warmth</string>
+    <string name="adjust_white_bg">White background</string>
+    <string name="adjust_working">Making background white…</string>
+    <string name="adjust_bg_failed">Could not change background</string>
+    <string name="adjust_reset">Reset</string>
+    <string name="adjust_retake">Retake</string>
+    <string name="adjust_next">Next</string>
+    <string name="edit_title">Edit photo</string>
+    <string name="edit_photo">Edit</string>
+    <string name="name_title">Name this photo</string>
+    <string name="name_explain">A name makes the photo easy to find later. You can leave it empty.</string>
+    <string name="name_hint">Name (optional)</string>
+    <string name="name_save">Save</string>
+
+    <!-- Sheet / print -->
+    <string name="sheet_title">Print preview</string>
+    <string name="sheet_info_passport">%1$d photos · each 3.5 × 4.5 cm</string>
+    <string name="sheet_info_full">1 photo · 4 × 6 inch</string>
+    <string name="sheet_print">Print</string>
+    <string name="sheet_save">Save to phone</string>
+    <string name="save_title">Save as</string>
+    <string name="save_photo">Photo (4×6)</string>
+    <string name="save_photo_desc">JPEG in the Gallery · print it anywhere</string>
+    <string name="save_pdf">PDF</string>
+    <string name="save_pdf_desc">In Downloads · exact size for printing</string>
+    <string name="save_working">Saving…</string>
+    <string name="saved_photo">Photo saved in Gallery → Photo Studio</string>
+    <string name="saved_pdf">PDF saved in Downloads → Photo Studio</string>
+    <string name="saved_private">Saved. Use Share to send it.</string>
+    <string name="save_failed">Could not save the file</string>
+    <string name="save_permission">Allow storage access to save the file</string>
+    <string name="sheet_share">Share</string>
+    <string name="sheet_delete">Delete</string>
+    <string name="sheet_done">Done</string>
+    <string name="sheet_tip">In the print screen select the Canon printer, paper size 4×6 (10×15 cm) and photo paper.</string>
+    <string name="sheet_not_found">Photo not found</string>
+    <string name="delete_title">Delete this photo?</string>
+    <string name="delete_yes">Yes, delete</string>
+    <string name="print_job_name">Photo %1$s</string>
+
+    <!-- History -->
+    <string name="history_title">Previous photos</string>
+    <string name="history_empty">No photos yet</string>
+    <string name="label_passport">Passport</string>
+    <string name="label_4x6">4×6</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">Language</string>
+    <string name="lang_english" translatable="false">English</string>
+    <string name="lang_telugu" translatable="false">తెలుగు</string>
+    <string name="settings_photo">Photo</string>
+    <string name="settings_white_bg">White background on by default</string>
+    <string name="settings_back_camera">Start with back camera</string>
+    <string name="settings_cut_lines">Print cutting lines</string>
+</resources>
