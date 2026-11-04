@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
@@ -25,7 +24,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.raghu.photostudio.R
@@ -75,14 +76,24 @@ fun HomeScreen(onTakePhoto: () -> Unit, onHistory: () -> Unit, onSettings: () ->
         }
 
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            SmallTile(Icons.Filled.DateRange, stringResource(R.string.home_previous), onHistory, Modifier.weight(1f))
-            SmallTile(Icons.Filled.Settings, stringResource(R.string.home_settings), onSettings, Modifier.weight(1f))
+            SmallTile(
+                painterResource(R.drawable.ic_photo_library),
+                stringResource(R.string.home_previous),
+                onHistory,
+                Modifier.weight(1f),
+            )
+            SmallTile(
+                rememberVectorPainter(Icons.Filled.Settings),
+                stringResource(R.string.home_settings),
+                onSettings,
+                Modifier.weight(1f),
+            )
         }
     }
 }
 
 @Composable
-private fun SmallTile(icon: ImageVector, label: String, onClick: () -> Unit, modifier: Modifier) {
+private fun SmallTile(icon: Painter, label: String, onClick: () -> Unit, modifier: Modifier) {
     Card(
         onClick = onClick,
         modifier = modifier.height(130.dp),
@@ -99,7 +110,7 @@ private fun SmallTile(icon: ImageVector, label: String, onClick: () -> Unit, mod
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Icon(icon, contentDescription = null, modifier = Modifier.size(40.dp))
+            Icon(painter = icon, contentDescription = null, modifier = Modifier.size(40.dp))
             Spacer(Modifier.height(8.dp))
             Text(label, style = MaterialTheme.typography.titleMedium)
         }

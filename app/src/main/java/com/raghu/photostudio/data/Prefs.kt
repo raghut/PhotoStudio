@@ -8,8 +8,9 @@ import java.util.Locale
 class Prefs(context: Context) {
     private val sp = context.applicationContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
+    /** Off by default: the shop usually shoots against a real white wall already. */
     var whiteBackgroundDefault: Boolean
-        get() = sp.getBoolean("white_bg", true)
+        get() = sp.getBoolean("white_bg", false)
         set(v) = sp.edit().putBoolean("white_bg", v).apply()
 
     var startWithBackCamera: Boolean

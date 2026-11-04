@@ -29,7 +29,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -37,7 +36,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -64,6 +62,7 @@ import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
@@ -83,10 +82,15 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 
 /** Flash choices, in the order the button cycles through them. */
-private enum class Flash(val mode: Int, val label: Int) {
-    OFF(ImageCapture.FLASH_MODE_OFF, R.string.camera_flash_off),
-    AUTO(ImageCapture.FLASH_MODE_AUTO, R.string.camera_flash_auto),
-    ON(ImageCapture.FLASH_MODE_ON, R.string.camera_flash_on);
+private enum class Flash(val mode: Int, val icon: Int, val label: Int) {
+    OFF(ImageCapture.FLASH_MODE_OFF, R.drawable.ic_flash_off, R.string.camera_flash_off),
+    AUTO(ImageCapture.FLASH_MODE_AUTO, R.drawable.ic_flash_auto, R.string.camera_flash_auto),
+
+    /**
+     * The lamp comes on straight away and stays on, so the light is visible while framing and
+     * certain to be there at capture — some phones skip the capture-time flash entirely.
+     */
+    ON(ImageCapture.FLASH_MODE_ON, R.drawable.ic_flash_on, R.string.camera_flash_on);
 
     fun next(): Flash = entries[(ordinal + 1) % entries.size]
 }
@@ -198,6 +202,12 @@ private fun CameraContent(photoSize: PhotoSize, onBack: () -> Unit, onCaptured: 
 
     LaunchedEffect(flash, hasFlash) {
         cameraController.imageCaptureFlashMode = if (hasFlash) flash.mode else ImageCapture.FLASH_MODE_OFF
+        runCatching { cameraController.enableTorch(hasFlash && flash == Flash.ON) }
+    }
+
+    // Never leave the lamp burning when the camera screen goes away.
+    DisposableEffect(Unit) {
+        onDispose { runCatching { cameraController.enableTorch(false) } }
     }
 
     fun capture() {
@@ -303,14 +313,20 @@ private fun CameraContent(photoSize: PhotoSize, onBack: () -> Unit, onCaptured: 
         )
 
         if (hasFlash) {
-            FilledTonalButton(
+            FilledTonalIconButton(
                 onClick = { flash = flash.next() },
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .statusBarsPadding()
                     .padding(16.dp)
-                    .widthIn(min = 108.dp),
-            ) { Text(stringResource(flash.label)) }
+                    .size(56.dp),
+            ) {
+                Icon(
+                    painter = painterResource(flash.icon),
+                    contentDescription = stringResource(flash.label),
+                    modifier = Modifier.size(28.dp),
+                )
+            }
         }
 
         // Controls at the bottom.
