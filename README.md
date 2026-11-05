@@ -39,8 +39,10 @@ part of a 30-day month — 15 extra days = half a month's interest. The logic li
 
 ## What it does
 
+Opened from the **Passport Photos** tile on the home screen:
+
 ```
-Home ─► Passport Photos ─┬─ Take Photo ─► Choose size ─┬─ Passport (3.5 × 4.5 cm) ─► Camera: passport frame + face oval
+Photo ┬─ Take Photo ─► Choose size ─┬─ Passport (3.5 × 4.5 cm) ─► Camera: passport frame + face oval
       │                             └─ 4×6 inch photo         ─► Camera: 4×6 frame
       │                                        │                  (flash: Off / Auto / On)
       │                                        ▼
