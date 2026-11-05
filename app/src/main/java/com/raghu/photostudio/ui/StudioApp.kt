@@ -8,12 +8,15 @@ import androidx.navigation.compose.rememberNavController
 import com.raghu.photostudio.model.PhotoSize
 import com.raghu.photostudio.ui.screens.AdjustScreen
 import com.raghu.photostudio.ui.screens.CameraScreen
+import com.raghu.photostudio.ui.screens.ChitScreen
 import com.raghu.photostudio.ui.screens.EditPhotoScreen
 import com.raghu.photostudio.ui.screens.HistoryScreen
-import com.raghu.photostudio.ui.screens.HomeScreen
+import com.raghu.photostudio.ui.screens.InterestScreen
+import com.raghu.photostudio.ui.screens.PhotoHomeScreen
 import com.raghu.photostudio.ui.screens.SettingsScreen
 import com.raghu.photostudio.ui.screens.SheetScreen
 import com.raghu.photostudio.ui.screens.SizeScreen
+import com.raghu.photostudio.ui.screens.ToolsHomeScreen
 
 /** Holds the just-captured photo between the Camera and Adjust screens. */
 object CaptureHolder {
@@ -29,7 +32,22 @@ fun StudioApp() {
 
     NavHost(navController = nav, startDestination = "home") {
         composable("home") {
-            HomeScreen(
+            ToolsHomeScreen(
+                onPhotos = { nav.navigate("photo") },
+                onInterest = { nav.navigate("interest") },
+                onChit = { nav.navigate("chit") },
+                onSettings = { nav.navigate("settings") },
+            )
+        }
+        composable("interest") {
+            InterestScreen(onBack = { nav.popBackStack() })
+        }
+        composable("chit") {
+            ChitScreen(onBack = { nav.popBackStack() })
+        }
+        composable("photo") {
+            PhotoHomeScreen(
+                onBack = { nav.popBackStack() },
                 onTakePhoto = { nav.navigate("size") },
                 onHistory = { nav.navigate("history") },
                 onSettings = { nav.navigate("settings") },
@@ -54,10 +72,10 @@ fun StudioApp() {
             AdjustScreen(
                 size = size,
                 onRetake = { nav.popBackStack() },
-                onMissingPhoto = { nav.popBackStack("home", inclusive = false) },
+                onMissingPhoto = { nav.popBackStack("photo", inclusive = false) },
                 onSaved = { jobId ->
-                    // Photo is saved; "back" from the print screen now returns home.
-                    nav.navigate("sheet/$jobId") { popUpTo("home") }
+                    // Photo is saved; "back" from the print screen now returns to the photo start screen.
+                    nav.navigate("sheet/$jobId") { popUpTo("photo") }
                 },
             )
         }
@@ -66,7 +84,7 @@ fun StudioApp() {
             SheetScreen(
                 jobId = id,
                 onBack = { nav.popBackStack() },
-                onHome = { nav.popBackStack("home", inclusive = false) },
+                onHome = { nav.popBackStack("photo", inclusive = false) },
                 onEdit = { nav.navigate("edit/$id") },
             )
         }
@@ -74,7 +92,7 @@ fun StudioApp() {
             EditPhotoScreen(
                 jobId = entry.arguments?.getString("id").orEmpty(),
                 onBack = { nav.popBackStack() },
-                onMissingPhoto = { nav.popBackStack("home", inclusive = false) },
+                onMissingPhoto = { nav.popBackStack("photo", inclusive = false) },
                 // The screen underneath reloads the photo from disk, so the change shows up there.
                 onSaved = { nav.popBackStack() },
             )
