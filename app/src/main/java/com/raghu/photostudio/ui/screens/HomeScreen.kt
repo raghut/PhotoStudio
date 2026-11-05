@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -42,7 +43,7 @@ import com.raghu.photostudio.ui.theme.Teal
 
 /** First screen: one big tile per tool. New tools get a tile here. */
 @Composable
-fun ToolsHomeScreen(onPhotos: () -> Unit, onInterest: () -> Unit, onSettings: () -> Unit) {
+fun ToolsHomeScreen(onPhotos: () -> Unit, onInterest: () -> Unit, onChit: () -> Unit, onSettings: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
@@ -80,6 +81,14 @@ fun ToolsHomeScreen(onPhotos: () -> Unit, onInterest: () -> Unit, onSettings: ()
             container = Saffron,
             content = Color(0xFF3A2500),
             onClick = onInterest,
+        )
+        ToolTile(
+            icon = { Icon(Icons.Filled.Person, contentDescription = null, modifier = Modifier.size(56.dp)) },
+            title = stringResource(R.string.tool_chit),
+            desc = stringResource(R.string.tool_chit_desc),
+            container = MaterialTheme.colorScheme.primaryContainer,
+            content = MaterialTheme.colorScheme.onPrimaryContainer,
+            onClick = onChit,
         )
         ToolTile(
             icon = { Icon(Icons.Filled.Settings, contentDescription = null, modifier = Modifier.size(48.dp)) },

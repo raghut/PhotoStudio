@@ -134,4 +134,35 @@
     <string name="interest_date_bad">No such date. Check the day and month.</string>
     <string name="interest_set_today">Today</string>
     <string name="interest_open_calendar">Open calendar</string>
+
+    <!-- Chit calculator -->
+    <string name="tool_chit">Chit Calculator</string>
+    <string name="tool_chit_desc">Auction: winner\'s amount, dividend, interest</string>
+    <string name="chit_title">Chit calculator</string>
+    <string name="chit_amount">Chit amount</string>
+    <string name="chit_members">Members</string>
+    <string name="chit_months">Months</string>
+    <string name="chit_commission">Commission</string>
+    <string name="chit_auction_month">Auction month</string>
+    <string name="chit_of_months">of %1$d</string>
+    <string name="chit_auction_amount">Auction amount (bid)</string>
+    <string name="chit_auction_help">The amount the winner gives up in the auction, e.g. ₹20,000 off a ₹3,00,000 chit.</string>
+    <string name="chit_err_missing">Fill in all the boxes</string>
+    <string name="chit_err_month">The auction month must be between 1 and the number of months</string>
+    <string name="chit_err_auction">The auction amount must be less than the chit amount</string>
+    <string name="chit_err_commission">Commission must be between 0 and 100%</string>
+    <string name="chit_winner_takes">Winner of month %1$d takes</string>
+    <string name="chit_interest_title">Interest the winner pays</string>
+    <string name="chit_rate_rupees">₹%1$s per ₹100 per month</string>
+    <string name="chit_rate_percent">%1$s%% per year</string>
+    <string name="chit_remaining">For the %1$d months still to pay</string>
+    <string name="chit_last_month">Last month — no months left, so no interest</string>
+    <string name="chit_everyone_title">Every member pays in month %1$d</string>
+    <string name="chit_monthly">Monthly share</string>
+    <string name="chit_dividend">Dividend</string>
+    <string name="chit_net_payable">To pay</string>
+    <string name="chit_split_title">Where the auction amount goes</string>
+    <string name="chit_commission_amount">Foreman commission</string>
+    <string name="chit_dividend_total">Shared as dividend</string>
+    <string name="chit_dividend_split">Split among %1$d members: %2$s each</string>
 </resources>

@@ -8,6 +8,7 @@ The home screen has one big tile per tool:
 |---|---|
 | **Passport Photos** | Passport / 4×6 photos with exact-size printing (details below) |
 | **Interest (Vaddi)** | Simple interest the village way — "₹2 for every ₹100 a month" |
+| **Chit Calculator** | Chit auction: winner's amount, dividend, what each member pays, interest |
 | Settings | Language, photo options |
 
 More tools planned: EMI/loan, GST & discount, quick bill on WhatsApp, daily sales notebook, unit
@@ -38,6 +39,25 @@ How time is counted: calendar months from the day the money was given (5 Jan →
 31 Jan → 28 Feb → 31 Mar stays on month-ends). Days left after the last full month are charged as
 part of a 30-day month — 15 extra days = half a month's interest. The logic lives in
 `tools/SimpleInterest.kt` with unit tests in `app/src/test/.../SimpleInterestTest.kt`.
+
+## Chit calculator
+
+Same formula as the Tool Basket website (`handy-finance-tools`, `src/routes/chit-advanced/calculations.ts`).
+Inputs: chit amount, members, months, commission %, auction month, auction amount (the bid — what the
+winner gives up). Opens with the website's example (₹3,00,000 · 20 members · 20 months · 4% ·
+month 14 · ₹20,000) so it shows a full answer; **Clear** empties it.
+
+| Result | Formula | Example |
+|---|---|---|
+| Winner takes | chit − auction amount | ₹2,80,000 |
+| Monthly share | chit ÷ members | ₹15,000 |
+| Commission | chit × commission % | ₹12,000 |
+| Dividend per member | (auction − commission) ÷ members | ₹400 |
+| Each member pays | monthly share − dividend | ₹14,600 |
+| Winner's interest | (auction − commission) ÷ (winner takes × months left ÷ 12) | 5.71% a year = ₹0.48 per ₹100 a month |
+
+In the last month there are no months left, so no interest is shown. **Share** sends the summary as text.
+Logic: `tools/ChitFund.kt`, tests: `ChitFundTest.kt`.
 
 # Passport Photos
 
@@ -124,6 +144,8 @@ Tip: for the 4×6 single photo, choose **Borderless** in the print options so th
 | `data/PhotoStore.kt` | Saves photos (finished + original + name/sliders), history list, share |
 | `tools/SimpleInterest.kt` | Vaddi calculation: months + leftover days, month-by-month rows |
 | `tools/DateInput.kt` | Typed dates: digits ↔ date, auto dashes |
+| `tools/ChitFund.kt` | Chit auction calculation |
+| `ui/screens/ChitScreen.kt` | Chit calculator screen |
 | `tools/Money.kt` | ₹1,00,000 Indian number format, dd-MM-yyyy dates |
 | `ui/screens/InterestScreen.kt` | Interest calculator screen and share text |
 | `ui/screens/HomeScreen.kt` | Tools home (one tile per tool) and the photo start screen |

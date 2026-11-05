@@ -122,4 +122,34 @@
     <string name="interest_date_bad">ఈ తేదీ లేదు. రోజు, నెల సరిచూడండి.</string>
     <string name="interest_set_today">ఈరోజు</string>
     <string name="interest_open_calendar">క్యాలెండర్ తెరవండి</string>
+
+    <string name="tool_chit">చిట్టీ లెక్క</string>
+    <string name="tool_chit_desc">పాట: పాడినవారికి వచ్చేది, డివిడెండ్, వడ్డీ</string>
+    <string name="chit_title">చిట్టీ లెక్క</string>
+    <string name="chit_amount">చిట్టీ మొత్తం</string>
+    <string name="chit_members">సభ్యులు</string>
+    <string name="chit_months">నెలలు</string>
+    <string name="chit_commission">కమీషన్</string>
+    <string name="chit_auction_month">పాట నెల</string>
+    <string name="chit_of_months">/ %1$d</string>
+    <string name="chit_auction_amount">పాట మొత్తం</string>
+    <string name="chit_auction_help">పాటలో వదులుకునే మొత్తం, ఉదా: ₹3,00,000 చిట్టీలో ₹20,000 తగ్గింపు.</string>
+    <string name="chit_err_missing">అన్ని బాక్సులు నింపండి</string>
+    <string name="chit_err_month">పాట నెల 1 నుండి మొత్తం నెలల లోపు ఉండాలి</string>
+    <string name="chit_err_auction">పాట మొత్తం చిట్టీ మొత్తం కంటే తక్కువ ఉండాలి</string>
+    <string name="chit_err_commission">కమీషన్ 0 నుండి 100% లోపు ఉండాలి</string>
+    <string name="chit_winner_takes">%1$dవ నెల పాడినవారికి వచ్చేది</string>
+    <string name="chit_interest_title">పాడినవారు కట్టే వడ్డీ</string>
+    <string name="chit_rate_rupees">నూటికి నెలకు ₹%1$s</string>
+    <string name="chit_rate_percent">సంవత్సరానికి %1$s%%</string>
+    <string name="chit_remaining">ఇంకా కట్టాల్సిన %1$d నెలలకు</string>
+    <string name="chit_last_month">చివరి నెల — మిగిలిన నెలలు లేవు, వడ్డీ లేదు</string>
+    <string name="chit_everyone_title">%1$dవ నెల ప్రతి సభ్యుడు కట్టేది</string>
+    <string name="chit_monthly">నెల వాటా</string>
+    <string name="chit_dividend">డివిడెండ్</string>
+    <string name="chit_net_payable">కట్టాల్సింది</string>
+    <string name="chit_split_title">పాట మొత్తం ఎక్కడికి వెళ్తుంది</string>
+    <string name="chit_commission_amount">ఫోర్‌మెన్ కమీషన్</string>
+    <string name="chit_dividend_total">డివిడెండ్‌గా పంచేది</string>
+    <string name="chit_dividend_split">%1$d సభ్యులకు పంచితే ఒక్కొక్కరికి %2$s</string>
 </resources>
