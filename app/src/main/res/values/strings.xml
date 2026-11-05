@@ -165,4 +165,42 @@
     <string name="chit_commission_amount">Foreman commission</string>
     <string name="chit_dividend_total">Shared as dividend</string>
     <string name="chit_dividend_split">Split among %1$d members: %2$s each</string>
+
+    <!-- Quick bill -->
+    <string name="tool_bill">Quick Bill</string>
+    <string name="tool_bill_desc">Bill or receipt · send on WhatsApp or print</string>
+    <string name="bill_title">Quick bill</string>
+    <string name="bill_new">New bill</string>
+    <string name="bill_shop_add">Tap to add your shop name</string>
+    <string name="bill_shop_edit">Edit shop details</string>
+    <string name="bill_shop_title">Shop details</string>
+    <string name="bill_shop_explain">Printed at the top of every bill. Typed once, remembered.</string>
+    <string name="bill_shop_name">Shop name</string>
+    <string name="bill_shop_details">Address / phone (optional)</string>
+    <string name="bill_number_date">Bill #%1$d · %2$s</string>
+    <string name="bill_customer_name">Customer name</string>
+    <string name="bill_customer_phone">Mobile (optional)</string>
+    <string name="bill_recent">Tap to add a recent item</string>
+    <string name="bill_add_item">Add item</string>
+    <string name="bill_remove_item">Remove item</string>
+    <string name="bill_empty">Add at least one item</string>
+    <string name="bill_send_picture">Send bill picture (WhatsApp)</string>
+    <string name="bill_send_text">Send as message</string>
+    <string name="bill_send_text_to">Send as WhatsApp message to %1$s</string>
+    <string name="bill_print">Print</string>
+    <string name="bill_print_job">Bill %1$d</string>
+    <!-- Words on the receipt itself -->
+    <string name="bill_word">Bill</string>
+    <string name="bill_date">Date</string>
+    <string name="bill_customer">Customer</string>
+    <string name="bill_item">Item</string>
+    <string name="bill_qty">Qty</string>
+    <string name="bill_rate">Rate</string>
+    <string name="bill_amount">Amount</string>
+    <string name="bill_subtotal">Subtotal</string>
+    <string name="bill_discount">Discount</string>
+    <string name="bill_total">Total</string>
+    <string name="bill_received">Received</string>
+    <string name="bill_balance">Balance due</string>
+    <string name="bill_thanks">Thank you! Visit again.</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.raghu.photostudio.model.PhotoSize
 import com.raghu.photostudio.ui.screens.AdjustScreen
+import com.raghu.photostudio.ui.screens.BillScreen
 import com.raghu.photostudio.ui.screens.CameraScreen
 import com.raghu.photostudio.ui.screens.ChitScreen
 import com.raghu.photostudio.ui.screens.EditPhotoScreen
@@ -36,11 +37,15 @@ fun StudioApp() {
                 onPhotos = { nav.navigate("photo") },
                 onInterest = { nav.navigate("interest") },
                 onChit = { nav.navigate("chit") },
+                onBill = { nav.navigate("bill") },
                 onSettings = { nav.navigate("settings") },
             )
         }
         composable("interest") {
             InterestScreen(onBack = { nav.popBackStack() })
+        }
+        composable("bill") {
+            BillScreen(onBack = { nav.popBackStack() })
         }
         composable("chit") {
             ChitScreen(onBack = { nav.popBackStack() })

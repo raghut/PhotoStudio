@@ -8,10 +8,11 @@ The home screen has one big tile per tool:
 |---|---|
 | **Passport Photos** | Passport / 4×6 photos with exact-size printing (details below) |
 | **Interest (Vaddi)** | Simple interest the village way — "₹2 for every ₹100 a month" |
+| **Quick Bill** | Bill / receipt: send as a picture or WhatsApp message, or print |
 | **Chit Calculator** | Chit auction: winner's amount, dividend, what each member pays, interest |
 | Settings | Language, photo options |
 
-More tools planned: EMI/loan, GST & discount, quick bill on WhatsApp, daily sales notebook, unit
+More tools planned: EMI/loan, GST & discount, daily sales notebook, unit
 conversion (acres/guntas, kg/quintals).
 
 ## Interest (Vaddi) calculator
@@ -39,6 +40,23 @@ How time is counted: calendar months from the day the money was given (5 Jan →
 31 Jan → 28 Feb → 31 Mar stays on month-ends). Days left after the last full month are charged as
 part of a 30-day month — 15 extra days = half a month's interest. The logic lives in
 `tools/SimpleInterest.kt` with unit tests in `app/src/test/.../SimpleInterestTest.kt`.
+
+## Quick bill
+
+- **Shop name and address/phone** are typed once (tap the top card) and printed on every bill.
+- **Bill number** goes up by one each time a bill is sent or printed; sending the same bill again
+  keeps its number. **New bill** clears the screen for the next customer.
+- **Items**: name × quantity × rate, with the amount worked out on each line. Items billed before
+  show as one-tap chips with their last rate (last 12 kept).
+- **Discount** and **received** are optional; with received filled in, the bill shows the balance due.
+- **Send bill picture**: the receipt as an image — pick WhatsApp and the customer.
+- **Send as message**: the bill as text. If the customer's 10-digit mobile is filled in, WhatsApp
+  opens straight on that customer's chat with the bill typed in.
+- **Print**: about 10 cm wide at the top of the page (A4 by default) — cut off the rest.
+  The receipt is drawn as vectors, so it prints sharp.
+
+Code: `tools/Bill.kt` (sums, WhatsApp text, tested), `bill/ReceiptRenderer.kt` (drawing),
+`bill/BillSharing.kt` (picture, message, print), `ui/screens/BillScreen.kt`.
 
 ## Chit calculator
 

@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -43,7 +44,7 @@ import com.raghu.photostudio.ui.theme.Teal
 
 /** First screen: one big tile per tool. New tools get a tile here. */
 @Composable
-fun ToolsHomeScreen(onPhotos: () -> Unit, onInterest: () -> Unit, onChit: () -> Unit, onSettings: () -> Unit) {
+fun ToolsHomeScreen(onPhotos: () -> Unit, onInterest: () -> Unit, onChit: () -> Unit, onBill: () -> Unit, onSettings: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
@@ -81,6 +82,14 @@ fun ToolsHomeScreen(onPhotos: () -> Unit, onInterest: () -> Unit, onChit: () -> 
             container = Saffron,
             content = Color(0xFF3A2500),
             onClick = onInterest,
+        )
+        ToolTile(
+            icon = { Icon(Icons.Filled.ShoppingCart, contentDescription = null, modifier = Modifier.size(56.dp)) },
+            title = stringResource(R.string.tool_bill),
+            desc = stringResource(R.string.tool_bill_desc),
+            container = MaterialTheme.colorScheme.secondaryContainer,
+            content = MaterialTheme.colorScheme.onSecondaryContainer,
+            onClick = onBill,
         )
         ToolTile(
             icon = { Icon(Icons.Filled.Person, contentDescription = null, modifier = Modifier.size(56.dp)) },
