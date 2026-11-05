@@ -12,8 +12,8 @@ android {
         applicationId = "com.raghu.photostudio"
         minSdk = 24
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 3
+        versionName = "1.2"
     }
 
     buildTypes {
@@ -29,6 +29,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // java.time (dates for the interest calculator) on Android 7 too.
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -55,6 +57,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.3")
 
     // Camera
     val camerax = "1.4.1"
@@ -65,4 +68,6 @@ dependencies {
 
     // On-device person segmentation for the white background (works offline, model bundled in APK)
     implementation("com.google.mlkit:segmentation-selfie:16.0.0-beta6")
+
+    testImplementation("junit:junit:4.13.2")
 }

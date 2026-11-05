@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ఫోటో స్టూడియో</string>
+    <string name="app_name">షాప్ టూల్స్</string>
 
     <string name="back">వెనుకకు</string>
     <string name="cancel">రద్దు</string>
 
-    <string name="home_subtitle">ఒక్క నిమిషంలో పాస్‌పోర్ట్ ఫోటోలు</string>
+    <string name="home_subtitle">షాప్‌కి రోజూ ఉపయోగపడే టూల్స్</string>
     <string name="home_take_photo">ఫోటో తీయండి</string>
     <string name="home_take_photo_desc">పాస్‌పోర్ట్ సైజు లేదా 4×6 ఫోటో</string>
     <string name="home_previous">పాత ఫోటోలు</string>
@@ -82,4 +82,40 @@
     <string name="settings_white_bg">తెల్లని బ్యాక్‌గ్రౌండ్ ఆటోమేటిక్‌గా ఆన్</string>
     <string name="settings_back_camera">వెనుక కెమెరాతో ప్రారంభించు</string>
     <string name="settings_cut_lines">కత్తిరించే గీతలు ప్రింట్ చేయి</string>
+
+    <string name="tool_photos">పాస్‌పోర్ట్ ఫోటోలు</string>
+    <string name="tool_photos_desc">పాస్‌పోర్ట్ సైజు, 4×6 ఫోటోలు · ప్రింట్, షేర్</string>
+    <string name="tool_interest">వడ్డీ లెక్క</string>
+    <string name="tool_interest_desc">నూటికి నెలకు ₹ · నెల నెలా వడ్డీ</string>
+    <string name="tool_settings_desc">భాష, ఫోటో ఎంపికలు</string>
+    <string name="photo_subtitle">ఒక్క నిమిషంలో పాస్‌పోర్ట్ ఫోటోలు</string>
+
+    <string name="interest_title">వడ్డీ లెక్క</string>
+    <string name="interest_clear">తుడిచేయి</string>
+    <string name="interest_amount">ఇచ్చిన డబ్బు (అసలు)</string>
+    <string name="interest_rate">వడ్డీ: నూటికి నెలకు ఎంత?</string>
+    <string name="interest_rate_suffix">నూటికి / నెలకు</string>
+    <string name="interest_rate_year">సంవత్సరానికి %1$s%% తో సమానం</string>
+    <string name="interest_given_date">డబ్బు ఇచ్చిన తేదీ</string>
+    <string name="interest_return_date">డబ్బు తిరిగి వచ్చే తేదీ</string>
+    <string name="interest_pick_date">తేదీ ఎంచుకోండి</string>
+    <string name="interest_today">ఈరోజు</string>
+    <string name="interest_ok">సరే</string>
+    <string name="interest_enter">ఇచ్చిన డబ్బు, ఇచ్చిన తేదీ నమోదు చేయండి</string>
+    <string name="interest_bad_dates">తిరిగి వచ్చే తేదీ, ఇచ్చిన తేదీ కంటే ముందు ఉంది</string>
+    <string name="interest_time">కాలం</string>
+    <string name="interest_months_days">%1$d నెలలు %2$d రోజులు</string>
+    <string name="interest_total_days">మొత్తం %1$d రోజులు</string>
+    <string name="interest_per_month">నెల వడ్డీ</string>
+    <string name="interest_principal">అసలు</string>
+    <string name="interest_total">మొత్తం వడ్డీ</string>
+    <string name="interest_grand_total">అసలు + వడ్డీ</string>
+    <string name="interest_breakdown">నెల నెలా వడ్డీ</string>
+    <string name="interest_month_n">%1$dవ నెల</string>
+    <string name="interest_part_month">%1$d రోజులు మాత్రమే (30 రోజులకు లెక్క)</string>
+    <string name="interest_so_far">ఇప్పటి వరకు %1$s</string>
+    <string name="interest_share">షేర్ చేయండి</string>
+    <string name="interest_share_title">వడ్డీ లెక్క</string>
+    <string name="interest_share_rate">వడ్డీ: నూటికి నెలకు ₹%1$s (సంవత్సరానికి %2$s%%)</string>
+    <string name="interest_share_dates">%1$s నుండి %2$s వరకు</string>
 </resources>

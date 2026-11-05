@@ -1,11 +1,46 @@
-# Photo Studio — passport photos for the shop
+# Shop Tools — everyday tools for the shop
 
 Native Android app (Kotlin + Jetpack Compose + CameraX). English and Telugu.
+
+The home screen has one big tile per tool:
+
+| Tool | What it does |
+|---|---|
+| **Passport Photos** | Passport / 4×6 photos with exact-size printing (details below) |
+| **Interest (Vaddi)** | Simple interest the village way — "₹2 for every ₹100 a month" |
+| Settings | Language, photo options |
+
+More tools planned: EMI/loan, GST & discount, quick bill on WhatsApp, daily sales notebook, unit
+conversion (acres/guntas, kg/quintals).
+
+## Interest (Vaddi) calculator
+
+Enter the way it's said at the shop — no percentages:
+
+- **Amount given** (e.g. ₹10,000)
+- **Interest for every ₹100, per month**: tap ₹1 / ₹1.5 / ₹2 / ₹2.5 / ₹3 / ₹5, or type any amount.
+  The yearly % is shown underneath for reference (₹2 a month = 24% a year).
+- **Money given on** and **money returned on** (defaults to today) — pick from a calendar.
+
+It shows:
+
+- Time: *10 months 12 days* (and total days)
+- Interest per month = amount × rate ÷ 100
+- Total interest, and **principal + interest** in large text
+- **Month by month** list: each month's dates, that month's interest, and the total till then
+- **Share** sends the summary as text (WhatsApp etc.)
+
+How time is counted: calendar months from the day the money was given (5 Jan → 5 Feb is one month,
+31 Jan → 28 Feb → 31 Mar stays on month-ends). Days left after the last full month are charged as
+part of a 30-day month — 15 extra days = half a month's interest. The logic lives in
+`tools/SimpleInterest.kt` with unit tests in `app/src/test/.../SimpleInterestTest.kt`.
+
+# Passport Photos
 
 ## What it does
 
 ```
-Home ─┬─ Take Photo ─► Choose size ─┬─ Passport (3.5 × 4.5 cm) ─► Camera: passport frame + face oval
+Home ─► Passport Photos ─┬─ Take Photo ─► Choose size ─┬─ Passport (3.5 × 4.5 cm) ─► Camera: passport frame + face oval
       │                             └─ 4×6 inch photo         ─► Camera: 4×6 frame
       │                                        │                  (flash: Off / Auto / On)
       │                                        ▼
@@ -81,6 +116,10 @@ Tip: for the 4×6 single photo, choose **Borderless** in the print options so th
 | `print/SheetPrinter.kt` | Android print framework, true-size PDF |
 | `data/SheetExporter.kt` | "Save to phone": sheet as 4×6 JPEG (Gallery) or PDF (Downloads) |
 | `data/PhotoStore.kt` | Saves photos (finished + original + name/sliders), history list, share |
+| `tools/SimpleInterest.kt` | Vaddi calculation: months + leftover days, month-by-month rows |
+| `tools/Money.kt` | ₹1,00,000 Indian number format, dd-MM-yyyy dates |
+| `ui/screens/InterestScreen.kt` | Interest calculator screen and share text |
+| `ui/screens/HomeScreen.kt` | Tools home (one tile per tool) and the photo start screen |
 | `res/values-te/strings.xml` | Telugu text — edit here if any wording sounds odd |
 
 ## How a photo is stored

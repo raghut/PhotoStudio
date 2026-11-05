@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Photo Studio</string>
+    <string name="app_name">Shop Tools</string>
 
     <!-- Common -->
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
 
     <!-- Home -->
-    <string name="home_subtitle">Passport photos in one minute</string>
+    <string name="home_subtitle">Everyday tools for the shop</string>
     <string name="home_take_photo">Take Photo</string>
     <string name="home_take_photo_desc">Passport size or 4×6 photo</string>
     <string name="home_previous">Previous Photos</string>
@@ -92,4 +92,42 @@
     <string name="settings_white_bg">White background on by default</string>
     <string name="settings_back_camera">Start with back camera</string>
     <string name="settings_cut_lines">Print cutting lines</string>
+
+    <!-- Tools home -->
+    <string name="tool_photos">Passport Photos</string>
+    <string name="tool_photos_desc">Passport size and 4×6 photos · print and share</string>
+    <string name="tool_interest">Interest (Vaddi)</string>
+    <string name="tool_interest_desc">₹ per ₹100 a month · month by month</string>
+    <string name="tool_settings_desc">Language and photo options</string>
+    <string name="photo_subtitle">Passport photos in one minute</string>
+
+    <!-- Interest calculator -->
+    <string name="interest_title">Interest calculator</string>
+    <string name="interest_clear">Clear</string>
+    <string name="interest_amount">Amount given</string>
+    <string name="interest_rate">Interest for every ₹100, per month</string>
+    <string name="interest_rate_suffix">per ₹100 / month</string>
+    <string name="interest_rate_year">Same as %1$s%% per year</string>
+    <string name="interest_given_date">Money given on</string>
+    <string name="interest_return_date">Money returned on</string>
+    <string name="interest_pick_date">Choose date</string>
+    <string name="interest_today">today</string>
+    <string name="interest_ok">OK</string>
+    <string name="interest_enter">Enter the amount and the date the money was given</string>
+    <string name="interest_bad_dates">The return date is before the date the money was given</string>
+    <string name="interest_time">Time</string>
+    <string name="interest_months_days">%1$d months %2$d days</string>
+    <string name="interest_total_days">%1$d days in all</string>
+    <string name="interest_per_month">Interest per month</string>
+    <string name="interest_principal">Principal</string>
+    <string name="interest_total">Total interest</string>
+    <string name="interest_grand_total">Principal + interest</string>
+    <string name="interest_breakdown">Month by month</string>
+    <string name="interest_month_n">Month %1$d</string>
+    <string name="interest_part_month">%1$d days only (counted out of 30)</string>
+    <string name="interest_so_far">Till now %1$s</string>
+    <string name="interest_share">Share</string>
+    <string name="interest_share_title">Interest calculation</string>
+    <string name="interest_share_rate">Interest: ₹%1$s per ₹100 per month (%2$s%% per year)</string>
+    <string name="interest_share_dates">From %1$s to %2$s</string>
 </resources>
