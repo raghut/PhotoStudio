@@ -20,7 +20,11 @@ Enter the way it's said at the shop — no percentages:
 - **Amount given** (e.g. ₹10,000)
 - **Interest for every ₹100, per month**: tap ₹1 / ₹1.5 / ₹2 / ₹2.5 / ₹3 / ₹5, or type any amount.
   The yearly % is shown underneath for reference (₹2 a month = 24% a year).
-- **Money given on** and **money returned on** (defaults to today) — pick from a calendar.
+- **Money given on** and **money returned on**. Either type the date on the number keyboard —
+  just the digits, the dashes appear by themselves (`05112026` → 05-11-2026) — or tap the
+  calendar icon. Both fill the same box, so a picked date can still be corrected by typing.
+  The return date starts as today; type over it, pick another, or tap **Today** to go back.
+  An impossible date (31-02-2026) is marked in red.
 
 It shows:
 
@@ -119,6 +123,7 @@ Tip: for the 4×6 single photo, choose **Borderless** in the print options so th
 | `data/SheetExporter.kt` | "Save to phone": sheet as 4×6 JPEG (Gallery) or PDF (Downloads) |
 | `data/PhotoStore.kt` | Saves photos (finished + original + name/sliders), history list, share |
 | `tools/SimpleInterest.kt` | Vaddi calculation: months + leftover days, month-by-month rows |
+| `tools/DateInput.kt` | Typed dates: digits ↔ date, auto dashes |
 | `tools/Money.kt` | ₹1,00,000 Indian number format, dd-MM-yyyy dates |
 | `ui/screens/InterestScreen.kt` | Interest calculator screen and share text |
 | `ui/screens/HomeScreen.kt` | Tools home (one tile per tool) and the photo start screen |

@@ -29,8 +29,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -48,10 +48,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TransformedText
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.raghu.photostudio.R
+import com.raghu.photostudio.tools.DateInput
 import com.raghu.photostudio.tools.Money
 import com.raghu.photostudio.tools.SimpleInterest
 import com.raghu.photostudio.ui.StudioTopBar
@@ -73,17 +78,18 @@ fun InterestScreen(onBack: () -> Unit) {
 
     var amountText by rememberSaveable { mutableStateOf("") }
     var rateText by rememberSaveable { mutableStateOf("2") }
-    var givenDay by rememberSaveable { mutableStateOf<Long?>(null) }
-    var returnDay by rememberSaveable { mutableStateOf(LocalDate.now().toEpochDay()) }
+    // Dates are kept as the typed digits ("05112026"); the calendar fills the same digits.
+    var givenText by rememberSaveable { mutableStateOf("") }
+    var returnText by rememberSaveable { mutableStateOf(DateInput.digits(LocalDate.now())) }
     var picking by rememberSaveable { mutableStateOf<String?>(null) } // "given" / "return" / null
 
     val amount = Money.parse(amountText)
     val rate = Money.parse(rateText)
-    val given = givenDay?.let(LocalDate::ofEpochDay)
-    val returned = LocalDate.ofEpochDay(returnDay)
-    val badDates = given != null && returned.isBefore(given)
+    val given = DateInput.parse(givenText)
+    val returned = DateInput.parse(returnText)
+    val badDates = given != null && returned != null && returned.isBefore(given)
     val result = remember(amount, rate, given, returned) {
-        if (amount == null || rate == null || given == null) null
+        if (amount == null || rate == null || given == null || returned == null) null
         else SimpleInterest.calculate(amount, rate, given, returned)
     }
 
@@ -91,8 +97,8 @@ fun InterestScreen(onBack: () -> Unit) {
         topBar = {
             StudioTopBar(stringResource(R.string.interest_title), onBack) {
                 TextButton(onClick = {
-                    amountText = ""; rateText = "2"; givenDay = null
-                    returnDay = LocalDate.now().toEpochDay()
+                    amountText = ""; rateText = "2"; givenText = ""
+                    returnText = DateInput.digits(LocalDate.now())
                 }) { Text(stringResource(R.string.interest_clear)) }
             }
         },
@@ -111,8 +117,10 @@ fun InterestScreen(onBack: () -> Unit) {
                     rateText = rateText,
                     onRate = { rateText = it.filter { c -> c.isDigit() || c == '.' } },
                     rate = rate,
-                    given = given,
-                    returned = returned,
+                    givenText = givenText,
+                    onGiven = { givenText = it },
+                    returnText = returnText,
+                    onReturn = { returnText = it },
                     onPickGiven = { picking = "given" },
                     onPickReturn = { picking = "return" },
                 )
@@ -141,11 +149,13 @@ fun InterestScreen(onBack: () -> Unit) {
     }
 
     picking?.let { which ->
-        val start = if (which == "given") givenDay ?: returnDay else returnDay
+        // Open on the date already in the box; otherwise the other date; otherwise today.
+        val start = (if (which == "given") given ?: returned else returned ?: given) ?: LocalDate.now()
         DatePick(
-            initialEpochDay = start,
+            initialEpochDay = start.toEpochDay(),
             onPicked = { day ->
-                if (which == "given") givenDay = day else returnDay = day
+                val digits = DateInput.digits(LocalDate.ofEpochDay(day))
+                if (which == "given") givenText = digits else returnText = digits
                 picking = null
             },
             onDismiss = { picking = null },
@@ -160,8 +170,10 @@ private fun InputCard(
     rateText: String,
     onRate: (String) -> Unit,
     rate: Double?,
-    given: LocalDate?,
-    returned: LocalDate,
+    givenText: String,
+    onGiven: (String) -> Unit,
+    returnText: String,
+    onReturn: (String) -> Unit,
     onPickGiven: () -> Unit,
     onPickReturn: () -> Unit,
 ) {
@@ -212,42 +224,85 @@ private fun InputCard(
 
             DateField(
                 label = stringResource(R.string.interest_given_date),
-                value = given?.let(Money::date) ?: stringResource(R.string.interest_pick_date),
-                missing = given == null,
-                onClick = onPickGiven,
+                digits = givenText,
+                onChange = onGiven,
+                onCalendar = onPickGiven,
+                showToday = false,
             )
             DateField(
                 label = stringResource(R.string.interest_return_date),
-                value = Money.date(returned) +
-                    if (returned == LocalDate.now()) "  (" + stringResource(R.string.interest_today) + ")" else "",
-                missing = false,
-                onClick = onPickReturn,
+                digits = returnText,
+                onChange = onReturn,
+                onCalendar = onPickReturn,
+                showToday = true,
             )
         }
     }
 }
 
+/**
+ * A date box: type it on the number keyboard (dashes appear by themselves: 05-11-2026)
+ * or tap the calendar icon to pick it. Both fill the same box, and either can change it.
+ */
 @Composable
-private fun DateField(label: String, value: String, missing: Boolean, onClick: () -> Unit) {
-    Column {
-        Text(label, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Spacer(Modifier.height(4.dp))
-        OutlinedButton(
-            onClick = onClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            shape = RoundedCornerShape(12.dp),
-        ) {
-            Icon(Icons.Filled.DateRange, contentDescription = null)
-            Spacer(Modifier.size(10.dp))
-            Text(
-                value,
-                style = MaterialTheme.typography.titleMedium,
-                color = if (missing) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.weight(1f),
-            )
-        }
+private fun DateField(
+    label: String,
+    digits: String,
+    onChange: (String) -> Unit,
+    onCalendar: () -> Unit,
+    showToday: Boolean,
+) {
+    val date = DateInput.parse(digits)
+    val today = LocalDate.now()
+    val invalid = digits.length == DateInput.LENGTH && date == null
+    OutlinedTextField(
+        value = digits,
+        onValueChange = { onChange(DateInput.clean(it)) },
+        label = { Text(label) },
+        placeholder = { Text(stringResource(R.string.interest_date_placeholder)) },
+        singleLine = true,
+        isError = invalid,
+        textStyle = MaterialTheme.typography.titleLarge,
+        visualTransformation = DateDashes,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        trailingIcon = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (showToday && date != today) {
+                    TextButton(onClick = { onChange(DateInput.digits(today)) }) {
+                        Text(stringResource(R.string.interest_set_today))
+                    }
+                }
+                IconButton(onClick = onCalendar) {
+                    Icon(
+                        Icons.Filled.DateRange,
+                        contentDescription = stringResource(R.string.interest_open_calendar),
+                        tint = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
+        },
+        supportingText = {
+            when {
+                invalid -> Text(stringResource(R.string.interest_date_bad))
+                date != null && date == today -> Text(stringResource(R.string.interest_today))
+                date == null -> Text(stringResource(R.string.interest_date_hint))
+            }
+        },
+        modifier = Modifier.fillMaxWidth(),
+    )
+}
+
+/** Shows typed digits "05112026" as "05-11-2026" while keeping only digits in the box. */
+private object DateDashes : VisualTransformation {
+    override fun filter(text: AnnotatedString): TransformedText {
+        val digits = text.text
+        return TransformedText(
+            AnnotatedString(DateInput.withDashes(digits)),
+            object : OffsetMapping {
+                override fun originalToTransformed(offset: Int) = DateInput.toDashed(offset)
+                override fun transformedToOriginal(offset: Int) = DateInput.toDigits(offset, digits.length)
+            },
+        )
     }
 }
 

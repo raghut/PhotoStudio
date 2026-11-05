@@ -110,8 +110,7 @@
     <string name="interest_rate_year">Same as %1$s%% per year</string>
     <string name="interest_given_date">Money given on</string>
     <string name="interest_return_date">Money returned on</string>
-    <string name="interest_pick_date">Choose date</string>
-    <string name="interest_today">today</string>
+    <string name="interest_today">Today</string>
     <string name="interest_ok">OK</string>
     <string name="interest_enter">Enter the amount and the date the money was given</string>
     <string name="interest_bad_dates">The return date is before the date the money was given</string>
@@ -130,4 +129,9 @@
     <string name="interest_share_title">Interest calculation</string>
     <string name="interest_share_rate">Interest: ₹%1$s per ₹100 per month (%2$s%% per year)</string>
     <string name="interest_share_dates">From %1$s to %2$s</string>
+    <string name="interest_date_placeholder">DD-MM-YYYY</string>
+    <string name="interest_date_hint">Type the date (DD-MM-YYYY) or tap the calendar</string>
+    <string name="interest_date_bad">No such date. Check the day and month.</string>
+    <string name="interest_set_today">Today</string>
+    <string name="interest_open_calendar">Open calendar</string>
 </resources>

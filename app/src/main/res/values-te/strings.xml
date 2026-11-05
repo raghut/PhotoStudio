@@ -98,7 +98,6 @@
     <string name="interest_rate_year">సంవత్సరానికి %1$s%% తో సమానం</string>
     <string name="interest_given_date">డబ్బు ఇచ్చిన తేదీ</string>
     <string name="interest_return_date">డబ్బు తిరిగి వచ్చే తేదీ</string>
-    <string name="interest_pick_date">తేదీ ఎంచుకోండి</string>
     <string name="interest_today">ఈరోజు</string>
     <string name="interest_ok">సరే</string>
     <string name="interest_enter">ఇచ్చిన డబ్బు, ఇచ్చిన తేదీ నమోదు చేయండి</string>
@@ -118,4 +117,9 @@
     <string name="interest_share_title">వడ్డీ లెక్క</string>
     <string name="interest_share_rate">వడ్డీ: నూటికి నెలకు ₹%1$s (సంవత్సరానికి %2$s%%)</string>
     <string name="interest_share_dates">%1$s నుండి %2$s వరకు</string>
+    <string name="interest_date_placeholder">రోజు-నెల-సంవత్సరం</string>
+    <string name="interest_date_hint">తేదీ టైప్ చేయండి (DD-MM-YYYY) లేదా క్యాలెండర్ నొక్కండి</string>
+    <string name="interest_date_bad">ఈ తేదీ లేదు. రోజు, నెల సరిచూడండి.</string>
+    <string name="interest_set_today">ఈరోజు</string>
+    <string name="interest_open_calendar">క్యాలెండర్ తెరవండి</string>
 </resources>
